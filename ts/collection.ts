@@ -55,20 +55,20 @@ export class Collection {
   }
 
   public async insertOne(doc: Object): Promise<any> {
-    // const _id = await dispatchAsync(
-    //   {
-    //     command_type: CommandType.InsertOne,
-    //     client_id: this.client.clientId,
-    //   },
-    //   encode(
-    //     JSON.stringify({
-    //       dbName: this.dbName,
-    //       collectionName: this.collectionName,
-    //       doc: convert(doc),
-    //     }),
-    //   ),
-    // );
-    return "nick456";
+    const _id = await dispatchAsync(
+      {
+        command_type: CommandType.InsertOne,
+        client_id: this.client.clientId,
+      },
+      encode(
+        JSON.stringify({
+          dbName: this.dbName,
+          collectionName: this.collectionName,
+          doc: convert(doc),
+        }),
+      ),
+    );
+    return _id;
   }
 
   public async insertMany(docs: Object[]): Promise<any> {
