@@ -18,7 +18,7 @@ pub fn delete(command: Command) -> Op {
         let db_name = args.db_name;
         let collection_name = args.collection_name;
         let delete_one = args.delete_one;
-        let query = util::json_to_document(args.query).expect("query canot be null");
+        let query = util::json_to_document(args.query).expect("query cannot be null");
         let database = client.database(&db_name);
         let collection = database.collection(&collection_name);
 

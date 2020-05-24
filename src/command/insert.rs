@@ -25,14 +25,11 @@ pub fn insert_one(command: Command) -> Op {
         let args: InsertOneArgs = serde_json::from_slice(data.unwrap().as_ref()).unwrap();
         let db_name = args.db_name;
         let collection_name = args.collection_name;
-        let doc = util::json_to_document(args.doc).expect("doc canot be null");
+        let doc = util::json_to_document(args.doc).expect("doc cannot be null");
         let database = client.database(&db_name);
         let collection = database.collection(&collection_name);
 
-        println!(doc);
-
         let insert_result = collection.insert_one(doc, None).unwrap();
-        println!(insert_result);
         util::async_result(&command.args, insert_result.inserted_id)
     };
     Op::Async(fut.boxed())
