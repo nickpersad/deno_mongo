@@ -29,7 +29,10 @@ pub fn insert_one(command: Command) -> Op {
         let database = client.database(&db_name);
         let collection = database.collection(&collection_name);
 
+        println!(doc);
+
         let insert_result = collection.insert_one(doc, None).unwrap();
+        println!(insert_result);
         util::async_result(&command.args, insert_result.inserted_id)
     };
     Op::Async(fut.boxed())
